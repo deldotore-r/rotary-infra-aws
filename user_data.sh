@@ -25,3 +25,4 @@ find /usr/share/nginx/html -type f -exec chmod 0664 {} \;
 echo "<h1>Rotary Club da Guarda</h1><h3>Infrastructure Provisioned via Terraform</h3><p>Status: Operational</p>" > /usr/share/nginx/html/index.html
 
 echo "Configuration finished."
+
