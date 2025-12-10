@@ -33,7 +33,7 @@ Toda a infraestrutura foi criada via Terraform na região `us-east-1` (N. Virgin
 
 ---
 
-## 🛠️ Tecnologias e Boas Práticas
+## Tecnologias e Boas Práticas
 
 | Tecnologia | Uso |
 |-----------|-----|
@@ -45,7 +45,7 @@ Toda a infraestrutura foi criada via Terraform na região `us-east-1` (N. Virgin
 
 ---
 
-## ⚙️ Fluxo do Projeto (Bootstrapping)
+### Fluxo do Projeto (Bootstrapping)
 
 Este projeto segue um fluxo completo de provisionamento, semelhante ao adotado em ambientes profissionais:
 
@@ -60,7 +60,7 @@ Este projeto segue um fluxo completo de provisionamento, semelhante ao adotado e
 
 ---
 
-## ▶️ Como Executar
+##Como Executar
 
 ```bash
 terraform init
