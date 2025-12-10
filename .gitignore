@@ -32,6 +32,3 @@ terraform.rc
 id_rsa
 id_rsa.pub
 
-# Older version of README.md -not to be commited
-README-oLd.md
-
