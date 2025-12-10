@@ -1,51 +1,101 @@
-# 🚀 Project: AWS Self-Healing Web Server (Basic IaC)
+# AWS Self-Healing Web Server (IaC)
 
-### Rotary Club Da Guarda Website Deployment
+### Deploy do Website do Rotary Club da Guarda
 
-This project demonstrates the core competencies required for Cloud and DevOps engineering: provisioning secure networking, managing immutable infrastructure, and implementing remote state management using Terraform.
+Este projeto demonstra, de ponta a ponta, os fundamentos essenciais para atuação em Cloud e DevOps: criação de rede segura, provisionamento automatizado de servidor web e gestão de estado remoto usando Terraform.  
 
----
+Foi desenvolvido com foco em boas práticas e em um fluxo de trabalho semelhante ao encontrado em ambientes profissionais.
 
-## ✨ Architecture & Scope
+> **Status do projeto:**  
+> A infraestrutura já está totalmente provisionada e funcional.  
+> O site será publicado em breve — há um formulário que demandará configuração adicional de backend e banco de dados.
 
-This infrastructure was provisioned entirely via Terraform in the `us-east-1` (N. Virginia) AWS region.
-
-
-
-### Components Provisioned:
-
-* **VPC (10.0.0.0/16):** Network isolation for the entire environment.
-* **Internet Gateway (IGW) & Public Subnet:** Enables external internet access for the web server.
-* **Security Group:** Implements strict firewall rules:
-    * **Inbound 22 (SSH):** Restricted dynamically to the administrator's **current public IP address**. (Automated via `data "http"`).
-    * **Inbound 80/443 (HTTP/S):** Open to the world (`0.0.0.0/0`).
-* **EC2 Instance (t3.micro):** Serves the Nginx web application.
-* **Elastic IP (EIP):** Ensures a fixed public address for the website, independent of instance recreation.
 
 ---
 
-## 🛠️ Key Technologies & Best Practices
+## Arquitetura (Resumo)
 
-| Technology | Purpose |
-| :--- | :--- |
-| **AWS** | VPC, EC2, S3, EIP |
-| **Terraform** | Infrastructure as Code (IaC) |
-| **Backend Management** | **S3 Native Locking** (`use_lockfile = true`) |
-| **Deployment Method** | Bootstrapping (`user_data.sh`) with `git clone` |
-| **Security Principle** | Least Privilege (Restricting SSH access dynamically) |
+Toda a infraestrutura foi criada via Terraform na região `us-east-1` (N. Virginia).
+
+### Recursos Provisionados
+
+- **VPC (10.0.0.0/16):** isolamento da rede.
+- **Subnet pública + Internet Gateway:** permite acesso à internet para o servidor.
+- **Security Group com regras rígidas:**
+  - **SSH (porta 22):** liberado apenas para o **IP público atual do administrador** (coletado dinamicamente via `data "http"`).
+  - **HTTP/HTTPS:** portas liberadas para acesso público.
+- **Instância EC2 (t3.micro):** servidor executando Nginx.
+- **Elastic IP:** endereço público fixo, mesmo após recriação da instância.
+- **Bucket S3:** backend remoto para o estado do Terraform, com:
+  - Versionamento habilitado  
+  - Criptografia ativada  
+  - S3 Native Locking (sem necessidade de DynamoDB)
 
 ---
 
-## 📝 Bootstrapping & Deployment Workflow
+## 🛠️ Tecnologias e Boas Práticas
 
-This project follows a professional **Bootstrapping** workflow to manage the remote state:
+| Tecnologia | Uso |
+|-----------|-----|
+| **AWS** | VPC, EC2, S3, EIP, SG, bootstrapping |
+| **Terraform** | IaC para todo o provisionamento |
+| **S3 Native Locking** | Evita concorrência no arquivo de estado |
+| **user_data.sh** | Instala Nginx e faz o deploy automático via `git clone` |
+| **Princípio de Menor Privilégio** | SSH restrito dinamicamente |
 
-1.  **State Backend Creation:** The code creates the S3 bucket required for remote state storage (S3 Versioning and Encryption are enabled).
-2.  **Infrastructure Creation:** Terraform provisions the networking and EC2 resources.
-3.  **Deployment:** The `user_data.sh` script runs automatically on the EC2 instance to install Nginx and deploy the website content via `git clone`.
+---
 
-### Command to Deploy:
+## ⚙️ Fluxo do Projeto (Bootstrapping)
+
+Este projeto segue um fluxo completo de provisionamento, semelhante ao adotado em ambientes profissionais:
+
+1. **Criação do Backend:**  
+   O próprio Terraform cria o bucket S3 que será usado para armazenar o estado remoto, já com versionamento e criptografia.
+
+2. **Provisionamento da Infra:**  
+   Rede, subnets, Security Groups, EC2, EIP e permissões de acesso.
+
+3. **Deploy Automático da Aplicação:**  
+   O script `user_data.sh` instala dependências, configura o Nginx e faz o deploy do site via `git clone`.
+
+---
+
+## ▶️ Como Executar
 
 ```bash
-# This command runs the full infrastructure creation and deployment:
-terraform apply -var="aws_key_name=YOUR_KEY_NAME"
+terraform init
+terraform fmt
+terraform plan
+terraform apply
+```
+## Estrutura do Repositório (Resumo)
+
+```
+.
+├── .gitignore
+├── backend_infra.tf
+├── ec2.tf
+├── outputs.tf
+├── provider.tf
+├── security.tf
+├── variables.tf
+├── versions.tf
+├── vpc.tf
+├── user_data.sh
+└── README.md
+```
+
+## Objetivo do Projeto
+
+Além de atender a uma demanda real (hospedagem do site institucional), o foco foi praticar habilidades essenciais para vagas de **Cloud/DevOps Júnior**, incluindo:
+
+- Infraestrutura como Código (IaC)
+- Segurança básica em Cloud
+- Rede e controles de acesso
+- Automação com user_data
+- Uso de backend remoto para Terraform
+- Provisionamento seguro e reprodutível
+
+---
+
+*Projeto desenvolvido por Reinaldo Del Dotore – 2025*
