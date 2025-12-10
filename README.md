@@ -1,51 +1,60 @@
-# 🚀 Project: AWS Self-Healing Web Server (Basic IaC)
+# Reinaldo Del Dotore
+### Cloud | DevOps | Infraestrutura como Código
 
-### Rotary Club Da Guarda Website Deployment
-
-This project demonstrates the core competencies required for Cloud and DevOps engineering: provisioning secure networking, managing immutable infrastructure, and implementing remote state management using Terraform.
-
----
-
-## ✨ Architecture & Scope
-
-This infrastructure was provisioned entirely via Terraform in the `us-east-1` (N. Virginia) AWS region.
-
-
-
-### Components Provisioned:
-
-* **VPC (10.0.0.0/16):** Network isolation for the entire environment.
-* **Internet Gateway (IGW) & Public Subnet:** Enables external internet access for the web server.
-* **Security Group:** Implements strict firewall rules:
-    * **Inbound 22 (SSH):** Restricted dynamically to the administrator's **current public IP address**. (Automated via `data "http"`).
-    * **Inbound 80/443 (HTTP/S):** Open to the world (`0.0.0.0/0`).
-* **EC2 Instance (t3.micro):** Serves the Nginx web application.
-* **Elastic IP (EIP):** Ensures a fixed public address for the website, independent of instance recreation.
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Reinaldo_Del_Dotore-0A66C2?style=flat&logo=linkedin)](SEU_LINK_DO_LINKEDIN_AQUI)
+[![Email](https://img.shields.io/badge/Email-Contato-D14836?style=flat&logo=gmail&logoColor=white)](mailto:SEU_EMAIL_AQUI)
 
 ---
 
-## 🛠️ Key Technologies & Best Practices
+## 👨‍💻 Sobre Mim
 
-| Technology | Purpose |
+Profissional em transição de carreira após **30 anos de experiência em liderança e gestão de processos críticos** na área militar. Atualmente, aplico essa bagagem de disciplina e eficiência operacional na tecnologia, com foco em **Cloud Computing, DevOps e Automação**.
+
+Minha abordagem técnica é voltada para a resolução de problemas reais: crio infraestruturas resilientes, automatizo fluxos de dados e otimizo operações para garantir escalabilidade e segurança.
+
+---
+
+## 🛠️ Tech Stack Principal
+
+| Área | Tecnologias |
 | :--- | :--- |
-| **AWS** | VPC, EC2, S3, EIP |
-| **Terraform** | Infrastructure as Code (IaC) |
-| **Backend Management** | **S3 Native Locking** (`use_lockfile = true`) |
-| **Deployment Method** | Bootstrapping (`user_data.sh`) with `git clone` |
-| **Security Principle** | Least Privilege (Restricting SSH access dynamically) |
+| **Cloud & IaC** | AWS, Terraform, Ansible, Docker |
+| **Automação & ETL** | Python, n8n, Apache Airflow |
+| **Dados & Backend** | SQL, Supabase, PostgreSQL |
 
 ---
 
-## 📝 Bootstrapping & Deployment Workflow
+## 🚀 Projetos em Destaque
 
-This project follows a professional **Bootstrapping** workflow to manage the remote state:
+### 1. Infraestrutura Automatizada na AWS (IaC)
+*Tecnologias: Terraform, AWS (EC2, S3, VPC, Security Groups)*
 
-1.  **State Backend Creation:** The code creates the S3 bucket required for remote state storage (S3 Versioning and Encryption are enabled).
-2.  **Infrastructure Creation:** Terraform provisions the networking and EC2 resources.
-3.  **Deployment:** The `user_data.sh` script runs automatically on the EC2 instance to install Nginx and deploy the website content via `git clone`.
+Projeto focado em provisionamento de infraestrutura como código. O objetivo foi eliminar configurações manuais e garantir um ambiente reprodutível e versionado.
+* **Feito:** Automação completa da criação de instâncias EC2, configuração de Security Groups e Buckets S3.
+* **Resultado:** Redução do tempo de setup e padronização de ambientes de desenvolvimento (`dev`).
 
-### Command to Deploy:
+[📂 Ver Repositório](LINK_PARA_O_REPOSITORIO_AWS)
 
-```bash
-# This command runs the full infrastructure creation and deployment:
-terraform apply -var="aws_key_name=YOUR_KEY_NAME"
+### 2. Automação de Inconsistências (Setor de Saúde)
+*Tecnologias: n8n, Python, Supabase*
+
+*Projeto real desenvolvido sob demanda (Confidencial).*
+Desenvolvimento de um workflow de monitoramento contínuo para detectar falhas em lançamentos financeiros/operacionais em tempo real.
+* **Desafio:** Identificar erros humanos em bancos de dados que causavam prejuízo financeiro.
+* **Solução:** Pipeline automatizado que cruza dados, valida regras de negócio e notifica a gestão imediatamente via dashboard/alerta.
+
+### 3. Detector Forense de Imagens (Lei de Benford)
+*Tecnologias: Python, Análise Estatística*
+
+Uma aplicação técnica que utiliza princípios matemáticos (Lei de Benford) para identificar manipulações artificiais em arquivos de imagem.
+* **Destaque:** Demonstração de capacidade analítica e manipulação avançada de dados com Python fora do contexto convencional.
+
+[📂 Ver Repositório](LINK_PARA_O_REPOSITORIO_BENFORD)
+
+---
+
+## 📚 Educação Contínua
+Acredito que na Era da IA, o aprendizado constante é a única vantagem competitiva sustentável. Mantenho estudos ativos em **Engenharia de Dados** e **Arquitetura de Soluções Cloud**.
+
+---
+*Reinaldo Del Dotore © 2025*
