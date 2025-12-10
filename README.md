@@ -1,6 +1,6 @@
 # AWS Self-Healing Web Server (IaC)
 
-### Deploy do Website do Rotary Club da Guarda
+## Deploy do Website do Rotary Club da Guarda
 
 Este projeto demonstra, de ponta a ponta, os fundamentos essenciais para atuação em Cloud e DevOps: criação de rede segura, provisionamento automatizado de servidor web e gestão de estado remoto usando Terraform.  
 
@@ -17,7 +17,7 @@ Foi desenvolvido com foco em boas práticas e em um fluxo de trabalho semelhante
 
 Toda a infraestrutura foi criada via Terraform na região `us-east-1` (N. Virginia).
 
-### Recursos Provisionados
+## Recursos Provisionados
 
 - **VPC (10.0.0.0/16):** isolamento da rede.
 - **Subnet pública + Internet Gateway:** permite acesso à internet para o servidor.
@@ -45,7 +45,7 @@ Toda a infraestrutura foi criada via Terraform na região `us-east-1` (N. Virgin
 
 ---
 
-### Fluxo do Projeto (Bootstrapping)
+## Fluxo do Projeto (Bootstrapping)
 
 Este projeto segue um fluxo completo de provisionamento, semelhante ao adotado em ambientes profissionais:
 
@@ -60,7 +60,7 @@ Este projeto segue um fluxo completo de provisionamento, semelhante ao adotado e
 
 ---
 
-##Como Executar
+## Como Executar
 
 ```bash
 terraform init
