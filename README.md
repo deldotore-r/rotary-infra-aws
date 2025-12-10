@@ -17,7 +17,7 @@ Foi desenvolvido com foco em boas práticas e em um fluxo de trabalho semelhante
 
 Toda a infraestrutura foi criada via Terraform na região `us-east-1` (N. Virginia).
 
-## Recursos Provisionados
+### Recursos Provisionados
 
 - **VPC (10.0.0.0/16):** isolamento da rede.
 - **Subnet pública + Internet Gateway:** permite acesso à internet para o servidor.
